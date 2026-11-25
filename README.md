@@ -2,7 +2,7 @@
 
 Turn Markdown into chapters of a Moodle Book. Paste text or upload a `.md` file, and every top heading becomes a chapter, the next level a subchapter.
 
-Course notes written in ChatGPT, Claude, Notion, Obsidian, Google Docs (Markdown export) or a GitHub repository are all Markdown. Moodle's Book can import a zip of HTML files, and its "one HTML file with headings as chapters" option has been marked unfinished in core for years. This plugin covers the Markdown case.
+Course notes written in ChatGPT, Claude, Notion, Obsidian, Google Docs (Markdown export) or a GitHub repository are all Markdown. Moodle's Book can import a zip of HTML files, but its "one HTML file with headings as chapters" option is commented out in core and its code is a TODO. This plugin covers the Markdown case.
 
 ## Use it
 
