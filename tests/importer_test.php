@@ -114,4 +114,10 @@ final class importer_test extends \advanced_testcase {
         $this->assertMatchesRegularExpression('/<pre[^>]*>\s*<code/', $content);
         $this->assertStringContainsString('echo 1;', $content);
     }
+
+    public function test_normalise_text(): void {
+        $this->assertSame('# Hi', importer::normalise_text("\xEF\xBB\xBF# Hi"));
+        $this->assertSame('# Café', importer::normalise_text("# Caf\xE9"));
+        $this->assertSame('# Café', importer::normalise_text('# Café'));
+    }
 }

@@ -98,13 +98,6 @@ class import_form extends \moodleform {
         if (trim($text) === '') {
             $text = (string) $this->get_file_content('importfile');
         }
-        // Drop a UTF-8 byte order mark and make sure the text is UTF-8.
-        if (str_starts_with($text, "\xEF\xBB\xBF")) {
-            $text = substr($text, 3);
-        }
-        if (!mb_check_encoding($text, 'UTF-8')) {
-            $text = \core_text::convert($text, 'windows-1252', 'utf-8');
-        }
-        return $text;
+        return \booktool_markdown\importer::normalise_text($text);
     }
 }

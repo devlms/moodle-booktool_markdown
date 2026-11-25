@@ -71,4 +71,21 @@ class importer {
         $DB->set_field('book', 'revision', $DB->get_field('book', 'revision', ['id' => $book->id]) + 1, ['id' => $book->id]);
         return $added;
     }
+
+    /**
+     * Make uploaded text safe to split: drop a UTF-8 byte order mark and convert
+     * text that is not UTF-8 (old Windows editors) from Windows-1252.
+     *
+     * @param string $text
+     * @return string
+     */
+    public static function normalise_text(string $text): string {
+        if (str_starts_with($text, "\xEF\xBB\xBF")) {
+            $text = substr($text, 3);
+        }
+        if (!mb_check_encoding($text, 'UTF-8')) {
+            $text = \core_text::convert($text, 'windows-1252', 'utf-8');
+        }
+        return $text;
+    }
 }

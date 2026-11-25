@@ -50,3 +50,12 @@ Feature: Import Markdown into a book
   Scenario: Students do not get the import page
     Given I am on the "Study book" "book activity" page logged in as "student1"
     Then "Import from Markdown" "link" should not exist
+
+  @javascript @_file_upload
+  Scenario: A teacher uploads a Markdown file
+    Given I am on the "Study book" "book activity" page logged in as "teacher1"
+    When I navigate to "Import from Markdown" in current page administration
+    And I upload "mod/book/tool/markdown/tests/fixtures/notes.md" file to "Markdown file" filemanager
+    And I press "Import"
+    Then I should see "2 chapters were added to the end of the book."
+    And I should see "Uploaded two" in the "Table of contents" "block"
